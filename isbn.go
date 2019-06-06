@@ -16,11 +16,7 @@ func calCheckDigitIsbn13(isbn13 string) (string, error) {
 			return "", fmt.Errorf("Failed to convert char to int: %s", string(char))
 		}
 
-		if idx%2 == 0 {
-			sum += digit * multipliers[0]
-		} else {
-			sum += digit * multipliers[1]
-		}
+		sum += digit * multipliers[idx%2]
 	}
 
 	checkDigit := (10 - sum%10) % 10
